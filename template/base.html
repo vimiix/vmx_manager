@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    {% block title %}{% endblock %}
+    <link rel="icon" type="image/png" href="/static/img/favicon.png">
+    <link rel="apple-touch-icon-precomposed" href="/static/i/app-icon72x72@2x.png">
+    <link rel="stylesheet" href="/static/css/amazeui.min.css" />
+    <link rel="stylesheet" href="/static/css/admin.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+    <header class="am-topbar am-topbar-inverse admin-header">
+        <div class="am-topbar-brand">
+            <a href="javascript:;" class="tpl-logo">
+                <img src="/static/img/logo.png" alt="">
+            </a>
+        </div>
+        <div class="am-icon-list tpl-header-nav-hover-ico am-fl am-margin-right">
+
+        </div>
+
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
+
+        <div class="am-collapse am-topbar-collapse" id="topbar-collapse">
+
+            <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list tpl-header-list">
+                <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen" class="tpl-header-list-link"><span class="am-icon-arrows-alt"></span> <span class="admin-fullText">开启全屏</span></a></li>
+
+                <li class="am-dropdown" data-am-dropdown data-am-dropdown-toggle>
+                    <a class="am-dropdown-toggle tpl-header-list-link" href="javascript:;">
+                        <span class="tpl-header-list-user-nick">{{ username }}</span><span class="tpl-header-list-user-ico"> <img src="/static/img/common-user.png"></span>
+                    </a>
+{#                    <ul class="am-dropdown-content">#}
+{#                        <li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li>#}
+{#                        <li><a href="#"><span class="am-icon-cog"></span> 设置</a></li>#}
+{#                        <li><a href="/manager/logout"><span class="am-icon-power-off"></span> 退出</a></li>#}
+{#                    </ul>#}
+                </li>
+                <li><a href="/manager/logout" class="tpl-header-list-link"><span class="am-icon-sign-out tpl-header-list-ico-out-size"></span></a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="tpl-page-container tpl-page-header-fixed">
+        <div class="tpl-left-nav tpl-left-nav-hover">
+            <div class="tpl-left-nav-title" >
+                vmx-manager控制台
+            </div>
+            <div class="tpl-left-nav-list">
+                <ul class="tpl-left-nav-menu">
+                    <li class="tpl-left-nav-item">
+                        <a href="/manager/index" class="nav-link {% block index %}{% endblock %}">
+                            <i class="am-icon-home"></i>
+                            <span>首页</span>
+                        </a>
+                    </li>
+                    <li class="tpl-left-nav-item">
+                        <a href="/manager/hostlist" class="nav-link {% block hostlist %}{% endblock %}">
+                            <i class="am-icon-server"></i>
+                            <span>主机列表</span>
+                        </a>
+                    </li>
+                    <li class="tpl-left-nav-item">
+                        <a href="/manager/show_data" class="nav-link {% block show_data %}{% endblock %}">
+                            <i class="am-icon-bar-chart"></i>
+                            <span>动态信息</span>
+                        </a>
+                    </li>
+                    <li class="tpl-left-nav-item">
+                        <a href="/manager/remote_cmd" class="nav-link {% block remote_cmd %}{% endblock %}">
+                            <i class="am-icon-keyboard-o"></i>
+                            <span>远程指令</span>
+                        </a>
+                    </li>
+                    <li class="tpl-left-nav-item">
+                        <a href="/manager/file_trans" class="nav-link {% block file_trans %}{% endblock %}">
+                            <i class="am-icon-file-o"></i>
+                            <span>文件传输</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        {% block body %}{% endblock %}
+    </div>
+
+
+    <div style="text-align: center">
+        &copy;  All Rights Reserved. <a href="http://www.vimiix.com/" target="_blank" title="Vimiix">vimiix</a>
+    </div>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/amazeui.min.js"></script>
+    <script src="/static/js/iscroll.js"></script>
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

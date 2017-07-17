@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>vmx-manager | 文件传输</title>
+{% endblock %}
+
+{% block file_trans %}active{% endblock %}
+
+{% block body %}
+    <div class="tpl-content-wrapper">
+        <div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                <span class="am-icon-code"></span> 向服务器上传文件
+            </div>
+        </div>
+        <div class="tpl-block">
+            <div class="am-g">
+                <div class="tpl-form-body tpl-form-line">
+                    <form class="am-form tpl-form-line-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="am-form-group">
+                            <label for="user-weibo" class="am-u-sm-3 am-form-label">文件 <span class="tpl-form-line-small-title">File</span></label>
+                            <div class="am-u-sm-9">
+                                <div class="am-form-group am-form-file">
+                                    <button type="button" class="am-btn am-btn-danger am-btn-sm">
+                                    <i class="am-icon-cloud-upload"></i> 添加文件
+                                    </button>
+                                    <input type="file" name="upload_file">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <input type="hidden" name="upload">
+                                <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">上传</button>
+                            </div>
+                        </div>
+                        <div style="width: 80%;height: auto;text-align: center">
+                            {% if is_success %}
+                            <p style="color: green; font-size: small">{{ tip_info }}</p>
+                            {% else %}
+                            <p style="color: #aa3333; font-size: small">{{ tip_info }}</p>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="tpl-content-wrapper">
+        <div class="tpl-portlet-components">
+        <div class="portlet-title">
+            <div class="caption font-green bold">
+                <span class="am-icon-code"></span> 向客户端分发文件
+            </div>
+        </div>
+        <div class="tpl-block">
+            <div class="am-g">
+                <div class="tpl-form-body tpl-form-line">
+                    <form class="am-form tpl-form-line-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">客户端IP <span class="tpl-form-line-small-title">IP</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" name="des_ip" placeholder="请输入要上传的客户端IP">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">客户端登录用户名 <span class="tpl-form-line-small-title">ClientUser</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" name="client_user" placeholder="请输入用户名">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">客户端登录密码 <span class="tpl-form-line-small-title">ClientPassword</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="password" class="tpl-form-input" name="client_passwd">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">要分发的文件路径 <span class="tpl-form-line-small-title">PutFilePath</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" name="put_file_path" placeholder="请输入文件路径.例如 D:\putFile.txt">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <label class="am-u-sm-3 am-form-label">要在客户端保存的路径 <span class="tpl-form-line-small-title">SavePath</span></label>
+                            <div class="am-u-sm-9">
+                                <input type="text" class="tpl-form-input" name="save_path" placeholder="此处不填则默认保存在'/tmp/'目录下">
+                            </div>
+                        </div>
+                        <div class="am-form-group">
+                            <div class="am-u-sm-9 am-u-sm-push-3">
+                                <input type="hidden" name="put">
+                                <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">分发</button>
+                            </div>
+                        </div>
+                        <div style="width: 80%;height: auto;text-align: center">
+                            {% if put_success %}
+                            <p style="color: green; font-size: small">{{ put_info }}</p>
+                            {% else %}
+                            <p style="color: #aa3333; font-size: small">{{ put_info }}</p>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

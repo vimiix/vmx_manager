@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% block title %}
+<title>vmx-manager | 首页</title>
+{% endblock %}
+{% block index %}active{% endblock %}
+
+{% block body %}
+
+    <div class="tpl-content-wrapper">
+            <div class="tpl-content-page-title" style="text-align: center; height: 80px">
+                <strong>欢迎 {{ username }} 进入 VMX-Manager version 1.0(Beta) CMDB管理系统</strong>
+            </div>
+            <div class="tpl-content-scope">
+                <div class="note note-info">
+                    <h3>VMX-Manager介绍
+                        <span class="close" data-close="note"></span>
+                    </h3>
+                    <p style="font-family: 'Microsoft YaHei'"> VMX-Manager是一个基于Django框架开发的一款CMDB管理系统，目前处于beta版本，功能主要包含: <code>管理系统管理的客户主机列表</code>，
+                        <code>动态显示客户机状态信息</code>，<code>远程指令操作指定客户机</code>以及<code>主机与客户机之间的文件传输</code>。</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+                    <div class="dashboard-stat blue">
+                        <div class="visual">
+                            <i class="am-icon-server"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number"> 主机列表 </div>
+                        </div>
+                        <a class="more" href="/manager/host"> 查看
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+                    </div>
+                </div>
+                <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+                    <div class="dashboard-stat red">
+                        <div class="visual">
+                            <i class="am-icon-bar-chart-o"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number"> 动态信息 </div>
+                        </div>
+                        <a class="more" href="/manager/show_data"> 查看
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+                    </div>
+                </div>
+                <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+                    <div class="dashboard-stat green">
+                        <div class="visual">
+                            <i class="am-icon-keyboard-o"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number"> 远程指令 </div>
+                        </div>
+                        <a class="more" href="/manager/remote_cmd"> 查看
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+                    </div>
+                </div>
+                <div class="am-u-lg-3 am-u-md-6 am-u-sm-12">
+                    <div class="dashboard-stat purple">
+                        <div class="visual">
+                            <i class="am-icon-file-o"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number"> 文件传输 </div>
+                        </div>
+                        <a class="more" href="/manager/file_trans"> 查看
+                    <i class="m-icon-swapright m-icon-white"></i>
+                </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

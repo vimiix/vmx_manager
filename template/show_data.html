@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>vmx-manager | CPU信息</title>
+{% endblock %}
+
+{% block show_data %}active{% endblock %}
+
+{% block body %}
+    <div class="tpl-content-wrapper">
+            <div class="tpl-portlet-components">
+                <div class="portlet-title">
+                    <div class="caption font-green bold">
+                        <span class="am-icon-code"></span> CPU信息展示
+                    </div>
+                </div>
+                <div class="tpl-block" style="text-align: center">
+                    <script src="/static/js/jquery-3.1.1.min.js"></script>
+                    <script src="/static/js/Chart.js"></script>
+                    <canvas id="canvas" height="300px" width="700px"></canvas>
+                    <h3>CPU信息动态演示</h3>
+                    <p style="color: green; font-size: small">tip: 请确保客户端主机在运行sendData.py脚本</p>
+                    <script>
+                            $(
+                                function () {
+                                    //实例化画布
+                                    var canvas = $("#canvas").get(0).getContext("2d");
+                                    canData = {
+                                        //设置横坐标标签
+                                        labels:[],
+                                        datasets:[
+                                            {
+                                                fillColor:"rgba(200,0,0,0.5)",
+                                                strokeColor:"rgba(0,200,200,1)",
+                                                data:[]//要展示的数据，通过ajax传递进来
+                                            }
+                                        ]
+                                    };
+                                    //绘制线条
+                                    var line = new Chart(canvas).Line(canData);
+                                    //ajax，动态加载数据
+                                    var int = setInterval(
+                                        function () {
+                                            $.ajax(
+                                                {
+                                                    type:"get",
+                                                    url:"http://127.0.0.1:8000/manager/getData/",
+                                                    data:"",
+                                                    success: function (data) {
+                                                        //console.log(data)
+                                                        //添加描点（y,x）
+                                                        line.addData([data['data']], data['time'])
+                                                        //获取描点个数
+                                                        var len = line.datasets[0].points.length;
+                                                        if (len > 10){
+                                                            line.removeData();//删除最开始的一个点
+                                                        }
+                                                    },
+                                                    error: function (error) {
+                                                        console.log(error)
+                                                    }
+                                                }
+                                            )
+                                        },
+                                        1000
+                                    )
+                                }
+                            )
+                        </script>
+                </div>
+                <div class="tpl-alert"></div>
+            </div>
+        </div>
+{% endblock %}

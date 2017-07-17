@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>vmx-manager | 添加主机</title>
+    <style type="text/css">
+    .form-style-2{
+        max-width: 500px;
+        padding: 20px 12px 10px 20px;
+        font: 13px Arial, Helvetica, sans-serif;
+    }
+    .form-style-2-heading{
+        font-weight: bold;
+        font-style: italic;
+        border-bottom: 2px solid #ddd;
+        margin-bottom: 20px;
+        font-size: 15px;
+        padding-bottom: 3px;
+    }
+    .form-style-2 label{
+        display: block;
+        margin: 0px 0px 15px 0px;
+    }
+    .form-style-2 label > span{
+        width: 100px;
+        font-weight: bold;
+        float: left;
+        padding-top: 8px;
+        padding-right: 5px;
+    }
+    .form-style-2 span.required{
+        color:red;
+    }
+    .form-style-2 .tel-number-field{
+        width: 40px;
+        text-align: center;
+    }
+    .form-style-2 input.input-field{
+        width: 48%;
+
+    }
+
+    .form-style-2 input.input-field,
+    .form-style-2 .tel-number-field,
+    .form-style-2 .textarea-field,
+     .form-style-2 .select-field{
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        border: 1px solid #C2C2C2;
+        box-shadow: 1px 1px 4px #EBEBEB;
+        -moz-box-shadow: 1px 1px 4px #EBEBEB;
+        -webkit-box-shadow: 1px 1px 4px #EBEBEB;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        padding: 7px;
+        outline: none;
+    }
+    .form-style-2 .input-field:focus,
+    .form-style-2 .tel-number-field:focus,
+    .form-style-2 .textarea-field:focus,
+    .form-style-2 .select-field:focus{
+        border: 1px solid #0C0;
+    }
+    .form-style-2 .textarea-field{
+        height:100px;
+        width: 55%;
+    }
+    .form-style-2 input[type=submit],
+    .form-style-2 input[type=button]{
+        border: none;
+        padding: 8px 15px 8px 15px;
+        background: #FF8500;
+        color: #fff;
+        box-shadow: 1px 1px 4px #DADADA;
+        -moz-box-shadow: 1px 1px 4px #DADADA;
+        -webkit-box-shadow: 1px 1px 4px #DADADA;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+    }
+    .form-style-2 input[type=submit]:hover,
+    .form-style-2 input[type=button]:hover{
+        background: #EA7B00;
+        color: #fff;
+    }
+    </style>
+{% endblock %}
+
+{% block hostlist %}active{% endblock %}
+
+{% block body %}
+    <div class="tpl-content-wrapper">
+        <div class="tpl-portlet-components">
+            <div class="portlet-title">
+                <div class="caption font-green bold">
+                    <span class="am-icon-code"></span> 添加云主机
+                </div>
+            </div>
+            <div class="am-u-sm-6 am-u-md-12">
+                <div class="form-style-2">
+                    <form action="" method="post">
+                        <label for="field1"><span>主机IP</span>
+                            <input type="text" class="input-field" name="ip" value=""/>
+                        </label>
+                        <label for="field1"><span>自定义主机名</span>
+                            <input type="text" class="input-field" name="nickname" value=""/>
+                        </label>
+                        <label for="field2"><span>管理员用户名</span>
+                            <input type="text" class="input-field" name="admin" value=""/>
+                        </label>
+                        <label for="field3"><span>密码</span>
+                            <input type="password" class="input-field" name="password" value="" />
+                        </label>
+                        <input type="hidden" name="submit_type" id="submit_type" value=""/>
+                        <label><span>&nbsp;</span>
+                            <input type="submit" value="添加主机" />
+                            <p style="color: green; font-size: small    ">提示：添加成功后，将会自动读取云主机信息</p>
+                        </label>
+                    </form>
+                    {% if is_add_success == 1 %}
+                        <script>
+                            alert('添加成功');
+                            window.location.href="/manager/hostlist"
+                        </script>
+                    {% elif is_add_success == 2%}
+                        <script>
+                            alert('抱歉，添加失败')
+                        </script>
+                    {% else %}
+{#                        不做操作#}
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
