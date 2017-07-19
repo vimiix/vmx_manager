@@ -16,11 +16,9 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from manager.views import index
-from showdata.views import *
 
 urlpatterns = [
     url(r'^$', index, name='index'),
-    url(r'^manager/', include('manager.urls', namespace='manager')),
-    url(r'^savedata/$', saveData),
-    url(r'^admin/', admin.site.urls),
+    url(r'^(?i)manager/', include('manager.urls', namespace='manager')),
+    url(r'^(?i)admin/', admin.site.urls),
 ]
